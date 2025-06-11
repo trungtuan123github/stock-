@@ -1,39 +1,34 @@
-# stock
-auto-warning-stock-system/
+# 📈 Auto-Warning Stock Price System
 
+An automated pipeline to analyze stock prices and news sentiment, then generate buy/sell warnings based on combined signals.
+
+---
+
+## 🔁 Project Pipeline Overview
+
+```mermaid
+graph TD
+    A[1. Fetch Stock Price Data (Yahoo Finance)] --> B[2. Analyze Price Signals]
+    B --> C[3. Scrape News Articles (Yahoo Finance)]
+    C --> D[4. Analyze News Sentiment]
+    D --> E[5. Generate Warning (Buy / Sell / Hold)]
+
+auto-warning-stock/
 │
-
-├── data/                        # Dữ liệu lưu trữ tạm thời
-
-│   └── raw/                    # Dữ liệu gốc tải từ Yahoo Finance
-
+├── main.py                         # Entry point of the system
+├── requirements.txt                # Python dependencies
 │
-
-├── news_scraper/
-
-│   └── cafef_scraper.py        # Thu thập tin tức từ CafeF
-
-│
-
-├── llm_sentiment_labeler/
-
-│   └── labeler.py              # Dùng LLM để gán nhãn sentiment
-
-│
-
 ├── price_analysis/
-
-
-│   ├── fetch_yahoo.py          # Lấy dữ liệu giá cổ phiếu từ Yahoo Finance
-
-│   └── labeling.py             # Xử lý và gán nhãn tăng/giảm cho giá
-
+│   └── fetch_yahoo.py              # Fetch historical price data using yfinance
 │
-
-├── models/
-│   ├── trainer.py              # Huấn luyện mô hình dự đoán xu hướng
-│   └── penalty_loss.py         # Hàm loss có penalize cú sốc
+├── news_scraper/
+│   └── yahoo_news_scraper.py      # Scrape news using Yahoo Finance
 │
-├── main.py                     # Chạy toàn bộ pipeline
-├── requirements.txt
-└── README.md
+├── sentiment_analysis/
+│   └── sentiment_predictor.py     # Predict sentiment using pretrained model
+│
+├── decision_engine/
+│   └── warning_generator.py       # Generate trading warnings based on signals
+│
+└── utils/
+    └── logger.py                  # Optional: Logging and helpers
