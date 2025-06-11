@@ -1,0 +1,6 @@
+beautifulsoup4
+requests
+yfinance
+torch
+google-generativeai
+python-dotenv
